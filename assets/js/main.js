@@ -1,7 +1,7 @@
 (function main() {
   // Code
   // n notes, t transition, r rotation, c color
-  // ?n=Reading%20groups%20>%20Independent%20reading%20>%20Online%20exercises%20>%20Word%20games&t=5&r=10&c=red&r=12&c=blue
+  // ?n=Reading%20groups%20>%20Independent%20reading%20>%20Online%20exercises%20>%20Word%20games&t=5&r=4&c=red&r=3&c=blue
   const usp = new URLSearchParams(location.search);
   const note = usp.get("n");
   const transition = parseInt(usp.get("t"));
@@ -11,6 +11,7 @@
     length: parseInt(r),
     color: color[i],
   }));
+
   let currentRotation = 0;
   let currentTime = Number(rotations[currentRotation].length);
   let state = "";
@@ -24,6 +25,29 @@
     }
   }
   setState("rotation");
+
+  if (note) {
+    const noteEl = document.getElementById("note");
+    noteEl.removeAttribute("hidden");
+    noteEl.innerHTML += `<p>${note.replace(/\n/g, "<br>")}</p>`;
+  }
+
+  const rotationsUlEl = document.getElementById("rotations");
+  for (let i = 0; i < rotations.length; i++) {
+    rotationsUlEl.innerHTML += `<li data-rotation=${i}>Rotation ${i + 1}</li>`;
+    if (i < rotations.length - 1) {
+      rotationsUlEl.innerHTML += `<li data-transition=${i}>Transition</li>`;
+    }
+  }
+  function setCurrentRotationIndicator() {
+    rotationsUlEl.childNodes.forEach((node) =>
+      node.removeAttribute("aria-current")
+    );
+    rotationsUlEl
+      .querySelector(`[data-${state}="${currentRotation}"]`)
+      .setAttribute("aria-current", true);
+  }
+  setCurrentRotationIndicator()
 
   // TODO: Remove
   console.log({ note, transition, rotations });
@@ -47,6 +71,7 @@
           // Move to transition
           setState("transition");
           currentTime = transition;
+          setCurrentRotationIndicator();
         }
         break;
       }
@@ -56,6 +81,7 @@
           currentRotation++;
           currentTime = Number(rotations[currentRotation].length);
           setState("rotation");
+          setCurrentRotationIndicator();
         }
         break;
       }

@@ -18,8 +18,15 @@
   <body>
     <main>
       <h1><span aria-hidden="true" role="img">🦋</span> Rotations</h1>
-      <button class="button" id="start">Start</button>
-      <button class="button" id="pause" hidden>Pause</button>
+      <div id="note" hidden>
+        <h2>Note</h2>
+      </div>
+      <div>
+        <h2>Rotations</h2>
+        <ul id="rotations"></ul>
+      </div>
+      <button class="button secondary" id="start">Start</button>
+      <button class="button secondary" id="pause" hidden>Pause</button>
       <div id="display"></div>
     </main>
     <script src="./assets/js/main.js" type="module"></script>

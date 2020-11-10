@@ -1,1 +1,27 @@
 /* Application styles */
+
+:root {
+    --app-blue: hsl(216, 72%, 40%);
+    --app-red: hsl(8, 72%, 40%);
+}
+
+body {
+    color: white;
+}
+
+body[data-state="transition"] {
+  background-color: var(--gray800);
+}
+
+body[data-color="blue"] {
+    background-color: var(--app-blue);
+}
+
+body[data-color="red"] {
+    background-color: var(--app-red)
+}
+
+#rotations li[aria-current="true"] {
+    background: white;
+    color: black;
+}
