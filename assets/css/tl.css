@@ -1,0 +1,173 @@
+/* Toollama styles */
+
+:root {
+  --primary: hsl(264, 64%, 48%);
+  --dark-primary: hsl(264, 64%, 40%);
+  --text-on-primary: white;
+  --border-radius: 8px;
+  --border-width: 2px;
+
+  --gray950: hsl(264, 8%, 5%);
+  --gray900: hsl(264, 8%, 10%);
+  --gray800: hsl(264, 8%, 20%);
+  --gray700: hsl(264, 8%, 30%);
+  --gray600: hsl(264, 8%, 40%);
+  --gray500: hsl(264, 8%, 50%);
+  --gray400: hsl(264, 8%, 60%);
+  --gray300: hsl(264, 8%, 70%);
+  --gray200: hsl(264, 8%, 80%);
+  --gray100: hsl(264, 8%, 90%);
+  --gray050: hsl(264, 8%, 95%);
+
+  --purple950: hsl(264, 64%, 5%);
+  --purple900: hsl(264, 64%, 10%);
+  --purple800: hsl(264, 64%, 20%);
+  --purple700: hsl(264, 64%, 30%);
+  --purple600: hsl(264, 64%, 40%);
+  --purple500: hsl(264, 64%, 50%);
+  --purple400: hsl(264, 64%, 60%);
+  --purple300: hsl(264, 64%, 70%);
+  --purple200: hsl(264, 64%, 80%);
+  --purple100: hsl(264, 64%, 90%);
+  --purple050: hsl(264, 64%, 95%);
+
+  --off-black: var(--gray950);
+  --off-white: var(--gray050);
+
+  --faint: hsla(0, 0%, 0%, 16%);
+}
+
+@font-face {
+  font-family: source;
+  font-weight: 400;
+  src: url("../fonts/SourceSansPro-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: source;
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/SourceSansPro-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: source;
+  font-weight: 700;
+  src: url("../fonts/SourceSansPro-Bold.ttf") format("truetype");
+}
+
+body {
+  font-family: source, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+*:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px black;
+  outline: 2px solid transparent;
+}
+
+:focus:not(:focus-visible) { outline: none }
+
+.alt-focus:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px var(--primary);
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+a {
+  color: var(--primary);
+  text-decoration-color: var(--faint);
+}
+
+a:focus,
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:visited {
+  text-decoration-style: dotted;
+}
+
+/* Inputs */
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.field.inline {
+  align-items: center;
+  display: flex;
+}
+
+.field input,
+.input {
+  border: var(--border-width) solid hsla(0, 0%, 0%, 16%);
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+}
+
+/* Buttons */
+
+.button {
+  --main-color: var(--primary);
+  background-color: var(--main-color);
+  border: var(--border-width) solid hsla(0, 0%, 0%, 24%);
+  border-bottom-width: 4px;
+  border-radius: var(--border-radius);
+  color: var(--text-on-primary);
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  transition: all 100ms ease-in-out;
+}
+
+.button:hover {
+  filter: brightness(0.9);
+}
+
+.button.outline {
+  border-color: currentColor;
+}
+
+.button.outline,
+.button.subtle {
+  background-color: transparent;
+  color: var(--main-color);
+}
+
+.button.subtle:not(:hover) {
+  border-color: transparent;
+}
+
+.button.subtle:hover,
+.button.outline:hover {
+  background-color: hsla(264, 8%, 8%, 8%);
+}
+
+.button.secondary {
+  --main-color: hsl(264, 8%, 0%);
+}
+
+.button.secondary:not(.outline):not(.subtle):hover {
+  background-color: hsl(264, 8%, 16%);
+}
