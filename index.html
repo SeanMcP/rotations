@@ -4,10 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rotations - Toollama</title>
-    <meta
-      name="description"
-      content="A group rotations clock for classrooms"
-    />
+    <meta name="description" content="A group rotations clock for classrooms" />
     <link
       rel="icon"
       href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦙</text></svg>"
@@ -18,16 +15,39 @@
   <body>
     <main>
       <h1><span aria-hidden="true" role="img">🦋</span> Rotations</h1>
-      <div id="note" hidden>
-        <h2>Note</h2>
-      </div>
-      <div>
-        <h2>Rotations</h2>
-        <ul id="rotations"></ul>
-      </div>
-      <button class="button secondary" id="start">Start</button>
-      <button class="button secondary" id="pause" hidden>Pause</button>
-      <div id="display"></div>
+      <form action="display.html">
+        <div class="field">
+          <label for="note"><b>Note</b></label>
+          <div id="note-description">
+            A note will be displayed at the top of the screen for all rotations
+            and transitions
+          </div>
+          <textarea
+            aria-describedby="note-description"
+            name="n"
+            id="note"
+          ></textarea>
+        </div>
+        <div class="field">
+          <label for="transition"><b>Transition length</b></label>
+          <div id="transition-description">
+            (In seconds) How long students have to move from one rotation to the
+            next
+          </div>
+          <input
+            aria-describedby="transition-description"
+            type="number"
+            name="t"
+            id="transition"
+            placeholder="60"
+            required
+          />
+        </div>
+        <button class="button outline" id="add-rotation">Add rotation</button>
+        <ol id="rotations"></ol>
+        <button class="button">Go</button>
+        <button class="button outline" type="reset">Reset</button>
+      </form>
     </main>
     <script src="./assets/js/main.js" type="module"></script>
   </body>

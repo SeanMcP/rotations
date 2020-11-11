@@ -5,7 +5,7 @@
     --app-red: hsl(8, 72%, 40%);
 }
 
-body {
+body[data-state] {
     color: white;
 }
 
@@ -13,11 +13,13 @@ body[data-state="transition"] {
   background-color: var(--gray800);
 }
 
-body[data-color="blue"] {
+body[data-color="blue"],
+body[data-color="b"] {
     background-color: var(--app-blue);
 }
 
-body[data-color="red"] {
+body[data-color="red"],
+body[data-color="r"] {
     background-color: var(--app-red)
 }
 
