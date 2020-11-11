@@ -7,10 +7,14 @@ export function get() {
   const transition = parseInt(usp.get("t"));
   const rotation = usp.getAll("r");
   const color = usp.getAll("c");
-  const rotations = rotation.map((r, i) => ({
-    length: parseInt(r),
-    color: color[i],
-  }));
+  const rotations = rotation.map((r, i) => {
+    const length = parseInt(r);
+    return {
+      color: color[i],
+      length,
+      lengthInSeconds: length * 60,
+    };
+  });
   return {
     edit: usp.get("edit") === "true" && rotations.length > 0 && transition,
     note,

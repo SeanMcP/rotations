@@ -8,7 +8,7 @@ import { get } from './search-params.js'
   editAnchor.href += location.search + '&edit=true'
 
   let currentRotation = 0;
-  let currentTime = Number(rotations[currentRotation].length);
+  let currentTime = Number(rotations[currentRotation].lengthInSeconds);
   let state = "";
   function setState(nextState) {
     state = nextState;
