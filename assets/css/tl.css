@@ -66,6 +66,7 @@ body {
 
 button,
 input,
+select,
 textarea {
   font-family: inherit;
   font-size: inherit;
@@ -118,12 +119,17 @@ a:visited {
 }
 
 .field input,
+.field select,
 .field textarea,
 .input {
   border: var(--border-width) solid hsla(0, 0%, 0%, 16%);
   border-radius: var(--border-radius);
   font-weight: bold;
   padding: 0.5rem 1rem;
+}
+
+.field select {
+  appearance: none;
 }
 
 /* Buttons */

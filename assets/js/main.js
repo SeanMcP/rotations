@@ -6,12 +6,15 @@ import { get } from "./search-params.js";
   const addRotationButton = document.getElementById("add-rotation");
 
   function addRotation({ length, color } = {}) {
-    const fieldEl = document.createElement("li");
-    fieldEl.classList.add("field", "rotation");
+    const li = document.createElement("li");
+    li.classList.add("rotation");
+    const fieldEl = document.createElement("div");
+    fieldEl.classList.add("field");
+    li.appendChild(fieldEl);
 
     const lengthLabel = document.createElement("label");
     const lengthB = document.createElement("b");
-    lengthB.textContent = "Length";
+    lengthB.textContent = "Minutes";
     lengthLabel.appendChild(lengthB);
     const lengthInput = document.createElement("input");
     lengthInput.max = 60;
@@ -47,7 +50,7 @@ import { get } from "./search-params.js";
     });
     fieldEl.appendChild(deleteButton);
 
-    rotationsEl.appendChild(fieldEl);
+    rotationsEl.appendChild(li);
   }
 
   addRotationButton.addEventListener("click", (event) => {

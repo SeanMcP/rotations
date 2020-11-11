@@ -1,0 +1,24 @@
+/* display.html styles */
+
+body[data-state] {
+  color: white;
+}
+
+body[data-state="transition"] {
+  background-color: var(--gray800);
+}
+
+body[data-color="blue"],
+body[data-color="b"] {
+  background-color: var(--app-blue);
+}
+
+body[data-color="red"],
+body[data-color="r"] {
+  background-color: var(--app-red);
+}
+
+#rotations li[aria-current="true"] {
+  background: white;
+  color: black;
+}
