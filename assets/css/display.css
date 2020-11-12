@@ -8,14 +8,31 @@ body[data-state="transition"] {
   background-color: var(--gray800);
 }
 
-body[data-color="blue"],
+body[data-color="r"] {
+  background-color: var(--app-red);
+}
+
+body[data-color="o"] {
+  background-color: var(--app-orange);
+  color: black;
+}
+
+body[data-color="y"] {
+  background-color: var(--app-yellow);
+  color: black;
+}
+
+body[data-color="g"] {
+  background-color: var(--app-green);
+  color: black;
+}
+
 body[data-color="b"] {
   background-color: var(--app-blue);
 }
 
-body[data-color="red"],
-body[data-color="r"] {
-  background-color: var(--app-red);
+body[data-color="p"] {
+  background-color: var(--app-purple);
 }
 
 #rotations li[aria-current="true"] {
