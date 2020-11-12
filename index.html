@@ -7,13 +7,13 @@
     <meta name="description" content="A group rotations clock for classrooms" />
     <link
       rel="icon"
-      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦙</text></svg>"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🦋</text></svg>"
     />
     <link rel="stylesheet" href="./assets/css/tl.css" />
     <link rel="stylesheet" href="./assets/css/styles.css" />
   </head>
   <body>
-    <main>
+    <main class="content">
       <h1><span aria-hidden="true" role="img">🦋</span> Rotations</h1>
       <form action="display.html">
         <div class="field">
@@ -42,13 +42,25 @@
             placeholder="60"
             required
           />
-        </div>     
-        <h2 class="rotations-heading"><span>Rotations</span>
+        </div>
+        <h2 class="rotations-heading">
+          <span>Rotations</span>
           <button class="button outline" id="add-rotation">Add rotation</button>
         </h2>
-        <ol id="rotations"></ol>
-        <button class="button">Go</button>
-        <button class="button outline" type="reset">Reset</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Minutes</th>
+              <th>Color</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="rotations-table"></tbody>
+        </table>
+        <footer class="buttons-container">
+          <button class="button">Go</button>
+          <button class="button outline" type="reset">Reset</button>
+        </footer>
       </form>
     </main>
     <script src="./assets/js/main.js" type="module"></script>

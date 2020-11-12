@@ -1,10 +1,24 @@
 /* Application styles */
 
 :root {
-  --app-blue: hsl(216, 72%, 40%);
   --app-red: hsl(8, 72%, 40%);
+  --app-orange: hsl(32, 80%, 48%);
+  --app-yellow: hsl(50, 96%, 48%);
+  --app-green: hsl(104, 64%, 48%);
+  --app-blue: hsl(216, 72%, 40%);
+  --app-purple: hsl(264, 72%, 40%);
 
   --page-background: white;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
 }
 
 .rotations-heading {
@@ -17,54 +31,34 @@
   font-size: 1rem;
 }
 
-.rotation {
-  border: 2px solid hsla(0, 0%, 0%, 16%);
-  border-radius: var(--border-radius);
-  border-top-left-radius: 0;
-  padding: 0.5rem;
-  position: relative;
-}
-
-.rotation .field {
-  display: flex;
-}
-
-.rotation .field > * + * {
-  margin-left: 1rem;
-}
-
-.rotation .field b {
-  margin-right: 0.5rem;
-}
-
 .rotation .button {
   margin-left: auto;
 }
 
-ol#rotations {
+#rotations-table {
   counter-reset: rotation;
-  list-style-type: none;
-  margin-top: 2rem;
-  padding: 0;
+  text-align: center;
+}
+
+table tr {
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+table thead tr::before {
+  content: 'Rotation';
+  display: block;
+  text-align: center;
 }
 
 .rotation::before {
-  background-color: var(--gray900);
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
   counter-increment: rotation;
-  content: "ROTATION " counter(rotation);
-  color: white;
+  content: "Rotation " counter(rotation);
   display: block;
-  font-size: 0.8em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  position: absolute;
   padding: 0.25rem 0.5rem;
-  left: -2px;
-  bottom: 100%;
 }
 
-.rotation + .rotation {
+.buttons-container {
   margin-top: 2rem;
 }
