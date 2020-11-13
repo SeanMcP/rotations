@@ -17,6 +17,7 @@ import { get } from "./search-params.js";
       min: 1,
       name: "r",
       placeholder: 12,
+      required: true,
       type: "number",
       value: length ? length : null,
     });

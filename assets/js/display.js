@@ -1,11 +1,11 @@
-import { get } from './search-params.js'
+import { get } from "./search-params.js";
 
 (function main() {
   // Code
-  const { note, transition, rotations } = get()
+  const { note, transition, rotations } = get();
 
-  const editAnchor = document.getElementById('edit')
-  editAnchor.href += location.search + '&edit=true'
+  const editAnchor = document.getElementById("edit");
+  editAnchor.href += location.search + "&edit=true";
 
   let currentRotation = 0;
   let currentTime = Number(rotations[currentRotation].lengthInSeconds);
@@ -27,31 +27,34 @@ import { get } from './search-params.js'
     noteEl.innerHTML += `<p>${note.replace(/\n/g, "<br>")}</p>`;
   }
 
-  const rotationsUlEl = document.getElementById("rotations");
+  const rotationsList = document.getElementById("rotations-list");
   for (let i = 0; i < rotations.length; i++) {
-    rotationsUlEl.innerHTML += `<li data-rotation=${i}>Rotation ${i + 1}</li>`;
+    rotationsList.innerHTML += `<li data-rotation=${i}>Rotation ${i + 1}</li>`;
     if (i < rotations.length - 1) {
-      rotationsUlEl.innerHTML += `<li data-transition=${i}>Transition</li>`;
+      rotationsList.innerHTML += `<li data-transition=${i}>Transition</li>`;
     }
   }
   function setCurrentRotationIndicator() {
-    rotationsUlEl.childNodes.forEach((node) =>
+    rotationsList.childNodes.forEach((node) =>
       node.removeAttribute("aria-current")
     );
-    rotationsUlEl
+    rotationsList
       .querySelector(`[data-${state}="${currentRotation}"]`)
       .setAttribute("aria-current", true);
   }
-  setCurrentRotationIndicator()
-
-  // TODO: Remove
-  console.log({ note, transition, rotations });
+  setCurrentRotationIndicator();
 
   const displayEl = document.getElementById("display");
-  const startButtonEl = document.getElementById("start");
-  const pauseButtonEl = document.getElementById("pause");
+  const startButton = document.getElementById("start");
+  const pauseButton = document.getElementById("pause");
 
-  displayEl.textContent = currentTime;
+  function setDisplay() {
+    const m = Math.floor(currentTime / 60),
+      s = currentTime - 60 * m;
+    displayEl.textContent = m ? `${m} min` : `${s} sec`;
+  }
+
+  setDisplay();
 
   function tick() {
     currentTime--;
@@ -74,29 +77,66 @@ import { get } from './search-params.js'
         if (currentTime < 0) {
           // Move to next rotation
           currentRotation++;
-          currentTime = Number(rotations[currentRotation].length);
+          currentTime = Number(rotations[currentRotation].lengthInSeconds);
           setState("rotation");
           setCurrentRotationIndicator();
         }
         break;
       }
     }
-    displayEl.textContent = currentTime;
+    setDisplay();
   }
 
-  startButtonEl.addEventListener("click", (event) => {
+  startButton.addEventListener("click", (event) => {
     event.preventDefault();
-    startButtonEl.hidden = true;
-    pauseButtonEl.removeAttribute("hidden");
+    startButton.hidden = true;
+    pauseButton.removeAttribute("hidden");
     // TODO: Start timer
     window._interval = setInterval(tick, 1000);
   });
 
-  pauseButtonEl.addEventListener("click", (event) => {
+  pauseButton.addEventListener("click", (event) => {
     event.preventDefault();
-    pauseButtonEl.hidden = true;
-    startButtonEl.removeAttribute("hidden");
+    pauseButton.hidden = true;
+    startButton.removeAttribute("hidden");
     // TODO: Pause timer
     clearInterval(window._interval);
+  });
+
+  const mainEl = document.getElementById("main");
+  const enterFullscreenButton = document.getElementById("enter-fullscreen");
+  const exitFullscreenButton = document.getElementById("exit-fullscreen");
+
+  function toggleFullscreen() {
+    if (document.fullscreenElement || document.webkitIsFullScreen) {
+      enterFullscreenButton.hidden = true;
+      exitFullscreenButton.removeAttribute("hidden");
+    } else {
+      enterFullscreenButton.removeAttribute("hidden");
+      exitFullscreenButton.hidden = true;
+    }
+  }
+
+  window.addEventListener("fullscreenchange", toggleFullscreen);
+  window.addEventListener("webkitfullscreenchange", toggleFullscreen);
+
+  enterFullscreenButton.addEventListener("click", async (event) => {
+    event.preventDefault();
+    if (mainEl.webkitRequestFullscreen) {
+      mainEl.webkitRequestFullscreen();
+    } else {
+      await mainEl.requestFullscreen();
+    }
+    toggleFullscreen();
+  });
+
+  exitFullscreenButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
+    toggleFullscreen();
   });
 })();

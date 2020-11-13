@@ -13,6 +13,8 @@ export function get() {
       color: color[i],
       length,
       lengthInSeconds: length * 60,
+      // DEV ONLY
+      // lengthInSeconds: 5
     };
   });
   return {

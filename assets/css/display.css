@@ -1,41 +1,117 @@
 /* display.html styles */
 
-body[data-state] {
-  color: white;
+body {
+  display: flex;
+  flex-direction: column;
+  font-size: 200%;
+  height: 100vh;
 }
 
-body[data-state="transition"] {
-  background-color: var(--gray800);
+body:fullscreen,
+body:-moz-full-screen,
+body:-webkit-full-screen {
+  background-color: blue;
 }
 
-body[data-color="r"] {
-  background-color: var(--app-red);
+body[data-color="r"] main {
+  --theme-color: var(--app-red);
 }
 
-body[data-color="o"] {
-  background-color: var(--app-orange);
-  color: black;
+body[data-color="o"] main {
+  --theme-color: var(--app-orange);
+  --text-on-theme: black;
 }
 
-body[data-color="y"] {
-  background-color: var(--app-yellow);
-  color: black;
+body[data-color="y"] main {
+  --theme-color: var(--app-yellow);
+  --text-on-theme: black;
 }
 
-body[data-color="g"] {
-  background-color: var(--app-green);
-  color: black;
+body[data-color="g"] main {
+  --theme-color: var(--app-green);
+  --text-on-theme: black;
 }
 
-body[data-color="b"] {
-  background-color: var(--app-blue);
+body[data-color="b"] main {
+  --theme-color: var(--app-blue);
 }
 
-body[data-color="p"] {
-  background-color: var(--app-purple);
+body[data-color="p"] main {
+  --theme-color: var(--app-purple);
 }
 
-#rotations li[aria-current="true"] {
-  background: white;
-  color: black;
+main {
+  --theme-color: var(--gray800);
+  --text-on-theme: white;
+  background-color: var(--theme-color);
+  color: var(--text-on-theme);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 2rem;
+  transition: background-color 2s ease-out, color 2s ease-out;
+}
+
+main > * + * {
+  margin-top: 2rem;
+}
+
+#display {
+  font-feature-settings: "tnum";
+  font-size: 10rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: bold;
+  text-align: center;
+}
+
+#rotations-list {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#rotations-list li + li {
+  margin-left: 1rem;
+}
+
+#rotations-list li[aria-current="true"] {
+  background: var(--text-on-theme);
+  border-radius: var(--border-radius);
+  color: var(--theme-color);
+  font-weight: bold;
+  padding: 0.25rem 0.5rem;
+}
+
+#note {
+  border: 2px solid var(--text-on-theme);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+#note > *:first-child {
+  margin-top: 0;
+}
+
+#note > *:last-child {
+  margin-bottom: 0;
+}
+
+.button-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+#edit {
+  color: var(--text-on-theme);
+}
+
+.fullscreen-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
 }
