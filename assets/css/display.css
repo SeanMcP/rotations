@@ -40,6 +40,10 @@ body[data-color="p"] main {
   --theme-color: var(--app-purple);
 }
 
+body * {
+  transition: background-color 1s ease-out, color 1s ease-out;
+}
+
 main {
   --theme-color: var(--gray800);
   --text-on-theme-elements: 0, 0%, 100%;
@@ -50,7 +54,6 @@ main {
   flex-direction: column;
   flex-grow: 1;
   padding: 2rem;
-  transition: background-color 2s ease-out, color 2s ease-out;
 }
 
 main > * + * {
@@ -104,7 +107,15 @@ main > * + * {
 .button-container {
   align-items: center;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.button-container button {
+  color: var(--theme-color);
+  font-size: 150%;
+  margin-bottom: 1rem;
+  min-width: 25%;
 }
 
 #edit {
