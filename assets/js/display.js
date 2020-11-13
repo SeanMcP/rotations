@@ -91,6 +91,7 @@ import { get } from "./search-params.js";
     event.preventDefault();
     startButton.hidden = true;
     pauseButton.removeAttribute("hidden");
+    document.body.dataset.running = "true";
     // TODO: Start timer
     window._interval = setInterval(tick, 1000);
   });
@@ -99,6 +100,7 @@ import { get } from "./search-params.js";
     event.preventDefault();
     pauseButton.hidden = true;
     startButton.removeAttribute("hidden");
+    document.body.removeAttribute("data-running");
     // TODO: Pause timer
     clearInterval(window._interval);
   });

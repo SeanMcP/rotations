@@ -19,17 +19,17 @@ body[data-color="r"] main {
 
 body[data-color="o"] main {
   --theme-color: var(--app-orange);
-  --text-on-theme: black;
+  --text-on-theme-elements: 0, 0%, 0%;
 }
 
 body[data-color="y"] main {
   --theme-color: var(--app-yellow);
-  --text-on-theme: black;
+  --text-on-theme-elements: 0, 0%, 0%;
 }
 
 body[data-color="g"] main {
   --theme-color: var(--app-green);
-  --text-on-theme: black;
+  --text-on-theme-elements: 0, 0%, 0%;
 }
 
 body[data-color="b"] main {
@@ -42,7 +42,8 @@ body[data-color="p"] main {
 
 main {
   --theme-color: var(--gray800);
-  --text-on-theme: white;
+  --text-on-theme-elements: 0, 0%, 100%;
+  --text-on-theme: hsl(var(--text-on-theme-elements));
   background-color: var(--theme-color);
   color: var(--text-on-theme);
   display: flex;
@@ -78,7 +79,7 @@ main > * + * {
 }
 
 #rotations-list li[aria-current="true"] {
-  background: var(--text-on-theme);
+  background-color: var(--text-on-theme);
   border-radius: var(--border-radius);
   color: var(--theme-color);
   font-weight: bold;
@@ -111,7 +112,37 @@ main > * + * {
 }
 
 .fullscreen-button {
+  background: transparent;
+  border: 2px solid var(--text-on-theme);
+  color: var(--text-on-theme);
   position: absolute;
   top: 2rem;
   right: 2rem;
+}
+
+.running-indicator {
+  --dimension: 2rem;
+  background-color: var(--text-on-theme);
+  border-radius: var(--dimension);
+  height: var(--dimension);
+  left: 2rem;
+  opacity: 0.5;
+  position: absolute;
+  top: 2rem;
+  transition: all 200ms ease-out;
+  width: var(--dimension);
+}
+
+body[data-running] .running-indicator {
+  animation: pulse 1s ease-out infinite;
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 hsla(var(--text-on-theme-elements), 50%);
+  }
+  80% {
+    box-shadow: 0 0 0 2rem hsla(var(--text-on-theme-elements), 0%);
+  }
 }
