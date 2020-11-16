@@ -40,8 +40,9 @@ body[data-color="p"] main {
   --theme-color: var(--app-purple);
 }
 
-body * {
-  transition: background-color 1s ease-out, color 1s ease-out;
+body[data-state="done"] main {
+  --theme-color: var(--gray200);
+  --text-on-theme-elements: 0, 0%, 0% ;
 }
 
 main {
@@ -54,6 +55,7 @@ main {
   flex-direction: column;
   flex-grow: 1;
   padding: 2rem;
+  transition: background-color 1s ease-out, border-color 1s ease-out, color 1s ease-out;
 }
 
 main > * + * {
@@ -74,7 +76,10 @@ main > * + * {
   justify-content: center;
   list-style-type: none;
   margin: 0;
-  padding: 0;
+}
+#rotations-list li {
+  border-radius: var(--border-radius);
+  padding: 0.25rem 0.5rem;
 }
 
 #rotations-list li + li {
@@ -83,10 +88,8 @@ main > * + * {
 
 #rotations-list li[aria-current="true"] {
   background-color: var(--text-on-theme);
-  border-radius: var(--border-radius);
   color: var(--theme-color);
   font-weight: bold;
-  padding: 0.25rem 0.5rem;
 }
 
 #note {
@@ -112,6 +115,7 @@ main > * + * {
 }
 
 .button-container button {
+  background-color: var(--text-on-theme);
   color: var(--theme-color);
   font-size: 150%;
   margin-bottom: 1rem;
@@ -122,10 +126,14 @@ main > * + * {
   color: var(--text-on-theme);
 }
 
+/* .button-container button, */
 .fullscreen-button {
   background: transparent;
   border: 2px solid var(--text-on-theme);
   color: var(--text-on-theme);
+}
+
+.fullscreen-button {
   position: absolute;
   top: 2rem;
   right: 2rem;

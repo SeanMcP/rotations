@@ -47,11 +47,12 @@ import { get } from "./search-params.js";
   const displayEl = document.getElementById("display");
   const startButton = document.getElementById("start");
   const pauseButton = document.getElementById("pause");
+  const resetButton = document.getElementById("reset");
 
-  function setDisplay() {
+  function setDisplay(value) {
     const m = Math.floor(currentTime / 60),
       s = currentTime - 60 * m;
-    displayEl.textContent = m ? `${m} min` : `${s} sec`;
+    displayEl.textContent = value ? value : m ? `${m} min` : `${s} sec`;
   }
 
   setDisplay();
@@ -62,9 +63,14 @@ import { get } from "./search-params.js";
       case "rotation": {
         if (currentTime < 0) {
           if (currentRotation === rotations.length - 1) {
-            // TODO: End
+            // End
+            pauseButton.hidden = true;
+            resetButton.removeAttribute("hidden");
+            document.body.removeAttribute("data-color");
+            document.body.removeAttribute("data-running");
+            document.body.dataset.state = "done";
+            setDisplay("Done!");
             return clearInterval(window._interval);
-            break;
           }
           // Move to transition
           setState("transition");
@@ -92,7 +98,6 @@ import { get } from "./search-params.js";
     startButton.hidden = true;
     pauseButton.removeAttribute("hidden");
     document.body.dataset.running = "true";
-    // TODO: Start timer
     window._interval = setInterval(tick, 1000);
   });
 
@@ -101,7 +106,6 @@ import { get } from "./search-params.js";
     pauseButton.hidden = true;
     startButton.removeAttribute("hidden");
     document.body.removeAttribute("data-running");
-    // TODO: Pause timer
     clearInterval(window._interval);
   });
 
